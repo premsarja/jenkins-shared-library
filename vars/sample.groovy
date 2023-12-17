@@ -1,5 +1,5 @@
 def info() {
-    echo i am called from the info function
+    echo 'I am called from the info function'
 }
 
-info()  
+info()
