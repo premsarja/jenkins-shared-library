@@ -3,6 +3,4 @@ def info() {
 }
 
 // calling function
-
-info()
   
