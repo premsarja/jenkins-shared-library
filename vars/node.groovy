@@ -6,3 +6,5 @@ lintchecks() {
        sh "echo Lint checks completed"
 
 }
+
+lintchecks()
