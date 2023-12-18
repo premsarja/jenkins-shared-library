@@ -1,5 +1,5 @@
-def info() {
-    echo 'I am called from the info function'
+def info(message) {
+    echo 'learn devops with $message'
 }
 
 info()
