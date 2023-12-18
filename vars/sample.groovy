@@ -1,5 +1,5 @@
 def info(message) {
-    echo 'learn devops with $message'
+    echo "learn devops with $message"
 }
 
-info(prem)
+info("prem")
