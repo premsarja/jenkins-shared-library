@@ -14,9 +14,9 @@
            stages {
             stage('Lint Checks') {
                 steps {                
-                    script(
+                    script{
                         lintchecks()
-                    )
+                    }
                 }
             }
             stage('Generating Artifacts') {
