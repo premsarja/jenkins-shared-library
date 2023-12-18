@@ -1,4 +1,4 @@
-lintchecks() {
+def lintchecks() {
        sh "echo Installing JSLint"
        sh "npm install jslint"
        sh "echo Starting lint checks**********"
