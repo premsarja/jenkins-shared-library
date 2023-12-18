@@ -19,7 +19,7 @@ def lintchecks() {
             stage('Generating Artifacts') {
                 steps {
                     sh "echo Generating Artifacts"
-                    sh "npm install"
+                    sh "mvn clean package"
                 }
             }
         }
