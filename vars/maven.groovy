@@ -7,9 +7,7 @@ def lintchecks() {
   
     def call() {
     pipeline {
-        agent {
-            label "shipping"
-        }
+        agent any 
            stages {
             stage('Lint Checks') {
                 steps {                
