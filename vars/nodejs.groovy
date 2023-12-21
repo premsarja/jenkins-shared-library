@@ -12,7 +12,7 @@ def lintchecks() {
     pipeline {
         agent any 
         environment{
-            SONAR_URL= "172.31.89.159:9000"
+            SONAR_URL= "172.31.89.159"
             SONAR_CRED =credentials('SONAR_CRED')
         }
            stages {
