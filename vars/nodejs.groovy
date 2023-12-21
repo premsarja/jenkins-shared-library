@@ -27,7 +27,7 @@ def lintchecks() {
             stage('sonar check'){
                 steps{
                     sh "env"
-                    sh "sonar-scanner -Dsonar.host.url=http://${SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_CRED_USR} -Dsonar-password=${SONAR_CRED}"             
+                    sh "sonar-scanner -Dsonar.host.url=http://${SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=squ_f304202a9ba3ead7c54870494e82123f0cb20e73"             
                 }
             }
             stage('Generating Artifacts') {
