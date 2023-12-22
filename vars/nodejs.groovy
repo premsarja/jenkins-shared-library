@@ -14,9 +14,7 @@ def lintchecks() {
            stages {
             stage('Lint Checks') {
                 steps {                
-                    script{
                         lintchecks()
-                    }
                 }
             }
 
