@@ -15,6 +15,7 @@ def call() {
                     }
                 }
             }
+            stage(sonar-checks){
                 environment{
                         SONAR_URL="172.31.89.159"
                         SONAR_CRED=credentials('SONAR_CRED')
