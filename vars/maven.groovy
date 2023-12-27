@@ -3,7 +3,7 @@ def lintchecks() {
     sh "mvn checkstyle:check || true"
     sh "echo Lint checks completed for ${COMPONENT}"
 }
-def maven(){
+def call(){
 pipeline {
     agent any 
     stages {
