@@ -30,7 +30,7 @@ def lintchecks() {
                     sh " bash qualitygate.sh || true"             
                 }
             }
-            stage('Generating Artifacts') {
+            stage('Generating Artifacts'){
                 steps {
                     sh "echo Generating Artifacts"
                     sh "npm install"
