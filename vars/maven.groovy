@@ -18,7 +18,7 @@ pipeline {
         stage('Generating Artifacts') {
             steps {
                 sh "echo Generating Artifacts"
-                sh "mvn clean package"
+                sh 'mvn clean package'
             }
          }
         stage("Sonar Check") {
