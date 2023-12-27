@@ -4,6 +4,7 @@ def lintchecks() {
     sh "echo Lint checks completed for ${COMPONENT}"
 }
 
+def call(){
 pipeline {
     agent any 
     environment {
@@ -33,5 +34,6 @@ pipeline {
                 sh "bash qualitygate.sh || true"             
             }
         }
-    }
+      }
+   }
 }
