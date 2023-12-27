@@ -8,11 +8,19 @@ pipeline {
     agent any 
     stages {
         stage('Lint Checks') {
-            steps {                
+            steps {
+                script{
                     lintchecks()
+                }                
             }
         }
-        
+
+        stage('Generating Artifacts') {
+            steps {
+                sh "echo Generating Artifacts"
+                sh "mvn clean package"
+            }
+         }
         stage("Sonar Check") {
             environment {
                 SONAR_URL="172.31.89.159"
@@ -24,13 +32,8 @@ pipeline {
                 sh "bash qualitygate.sh || true"             
             }
         }
+    }    
+            
         
-        stage('Generating Artifacts') {
-            steps {
-                sh "echo Generating Artifacts"
-                sh "mvn clean package"
-            }
-        }
-    }
-  } 
-}
+   }
+} 
