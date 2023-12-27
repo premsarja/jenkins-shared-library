@@ -9,9 +9,7 @@ pipeline {
     stages {
         stage('Lint Checks') {
             steps {                
-                script {
                     lintchecks()
-                }
             }
         }
         
