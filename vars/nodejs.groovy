@@ -14,6 +14,7 @@ def sonarcheck() {
     sh "bash qualitygate.sh || true"             
 }
 
+def call(){
 pipeline {
     agent any 
     environment {
@@ -44,4 +45,4 @@ pipeline {
             }
         }
     }
-}
+  }  }
