@@ -19,7 +19,7 @@ pipeline {
     environment {
         SONAR_URL = "172.31.89.159"
         SONAR_CRED = credentials('SONAR_CRED')
-        COMPONENT = "your_component_name" // Define your component name here or pass it from outside
+        COMPONENT = "${COMPONENT}" // Define your component name here or pass it from outside
     }
     stages {
         stage('Lint Checks') {
