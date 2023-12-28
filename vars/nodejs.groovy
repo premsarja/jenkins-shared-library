@@ -18,9 +18,6 @@ def sonarcheck(){
 
 def call() {
 pipeline {
-      environment{
-            SONAR_URL="172.31.89.159"
-            SONAR_CRED=credentials('SONAR_CRED')
      agent any 
         stages {
          stage('Lint Checks') {
@@ -29,6 +26,10 @@ pipeline {
              }
          }
          stage('sonar check'){
+            environment{
+              SONAR_URL="172.31.89.159"
+              SONAR_CRED=credentials('SONAR_CRED')
+
              steps{
                     sonarcheck()
                 }
