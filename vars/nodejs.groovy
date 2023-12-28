@@ -20,15 +20,15 @@ pipeline {
          }
          stage('sonar check'){
              environment{
-                     SONAR_URL="172.31.89.159"
-                     SONAR_CRED=credentials('SONAR_CRED')
+                 SONAR_URL="172.31.89.159"
+                 SONAR_CRED=credentials('SONAR_CRED')
              }
              steps{
                 script{
                     sonarcheck()
                 }
-             }
-         }
+            }
+        }
          stage('Generating Artifacts') {
              steps {
                  sh "echo Generating Artifacts"
