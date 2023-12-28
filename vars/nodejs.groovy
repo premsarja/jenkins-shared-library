@@ -25,14 +25,15 @@ pipeline {
             }
         }
         stage('Sonar Check') {
+             environment {
+                SONAR_URL = "172.31.89.159"
+                SONAR_CRED = credentials('SONAR_CRED')
+            }
+
             steps {
                 script {
                     sonarcheck()
                 }
-            }
-            environment {
-                SONAR_URL = "172.31.89.159"
-                SONAR_CRED = credentials('SONAR_CRED')
             }
         }
         stage('Generating Artifacts') {
