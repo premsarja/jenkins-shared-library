@@ -30,7 +30,7 @@ pipeline {
          }
          stage('sonar check'){
            
-             }
+             
              steps{
                     sonarcheck()
                 }
@@ -43,4 +43,5 @@ pipeline {
             }
         }
       }
-   } 
+
+}  } 
