@@ -10,12 +10,17 @@ def lintchecks() {
 
 def sonarcheck() {
     sh "env"
-    sh "sonar-scanner -Dsonar.host.url=http://${env.SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${env.COMPONENT} -Dsonar.login=e66657d47a6ff847cd4ff38fbc26b74a4a9d359f"
+    sh "sonar-scanner -Dsonar.host.url=http://${env.SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${env.COMPONENT} -Dsonar.login=${env.SONAR_CRED}"
     sh "bash qualitygate.sh || true"             
 }
 
 pipeline {
     agent any 
+    environment {
+        SONAR_URL = "172.31.89.159"
+        SONAR_CRED = credentials('SONAR_CRED')
+        COMPONENT = "your_component_name" // Replace with your component name or pass it externally
+    }
     stages {
         stage('Lint Checks') {
             steps {
@@ -25,11 +30,6 @@ pipeline {
             }
         }
         stage('Sonar Check') {
-             environment {
-                SONAR_URL = "172.31.89.159"
-                SONAR_CRED = credentials('SONAR_CRED')
-            }
-
             steps {
                 script {
                     sonarcheck()
