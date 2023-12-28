@@ -3,7 +3,7 @@
 def lintchecks() {
     sh "echo Installing JSLint"
     sh "npm install jslint"
-    sh "echo Starting lint checks********** ${COMPONENT}"
+    sh "echo Starting lint checks********** ${env.COMPONENT}"
     sh "node_modules/jslint/bin/jslint.js server.js || true"
     sh "echo Lint checks completed"
 }
@@ -16,11 +16,6 @@ def sonarcheck() {
 
 pipeline {
     agent any 
-    environment {
-        SONAR_URL = "172.31.89.159"
-        SONAR_CRED = credentials('SONAR_CRED')
-        COMPONENT = "${COMPONENT}" // Define your component name here or pass it from outside
-    }
     stages {
         stage('Lint Checks') {
             steps {
@@ -35,11 +30,16 @@ pipeline {
                     sonarcheck()
                 }
             }
+            environment {
+                SONAR_URL = "172.31.89.159"
+                SONAR_CRED = credentials('SONAR_CRED')
+            }
         }
         stage('Generating Artifacts') {
             steps {
                 sh "echo Generating Artifacts"
                 sh "npm install"
+                // Add any other necessary commands for generating artifacts
             }
         }
     }
