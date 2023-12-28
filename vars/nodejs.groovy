@@ -25,7 +25,7 @@ pipeline {
              }
              steps{
                 script{
-                    commonsonar.sonarcheck()
+                    common.sonarcheck()
                 }
             }
         }
