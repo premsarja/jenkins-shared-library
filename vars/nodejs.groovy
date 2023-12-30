@@ -21,7 +21,7 @@ pipeline {
     environment {
         SONAR_URL = "172.31.89.159"
         SONAR_CRED = credentials('SONAR_CRED')
-} 
+    }    
    // COMPONENT = "${env.COMPONENT}" // Replace with your component name or pass it externally
     }
     stages {
