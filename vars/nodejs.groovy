@@ -11,7 +11,8 @@ def lintchecks() {
 def sonarcheck() {
     sh "env"
     sh "sonar-scanner -X -Dsonar.host.url=${SONAR_URL} -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_CRED} -Dsonar.password=password"
-}   sh "bash qualitygate.sh || true" 
+    sh "bash qualitygate.sh || true"
+} 
 
 def call(){
 pipeline {
