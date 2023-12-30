@@ -10,7 +10,7 @@ def lintchecks() {
 
 def sonarcheck() {
     sh "env"
-    sh "sonar-scanner -X -Dsonar.host.url=${SONAR_URL} -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_CRED} -Dsonar.password=password"
+    sh "sonar-scanner -X -Dsonar.host.url=${SONAR_URL} -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=83b03e3e897fb76ef13f25c264b75e81ed043ed"
     sh "bash qualitygate.sh || true"
 } 
 
