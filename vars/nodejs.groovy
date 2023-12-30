@@ -19,7 +19,7 @@ pipeline {
     agent any 
     environment {
         SONAR_URL = "172.31.89.159"
-        // SONAR_CRED = credentials('password')
+         SONAR_CRED = credentials('password')
         // COMPONENT = "${env.COMPONENT}" // Replace with your component name or pass it externally
     }
     stages {
