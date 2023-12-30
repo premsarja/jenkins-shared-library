@@ -10,7 +10,7 @@ def lintchecks() {
 
 def sonarcheck() {
     sh "env"
-    sh "sonar-scanner -Dsonar.host.url=${SONAR_URL} -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_CRED} -Dsonar.password=password"
+    sh "sonar-scanner -X -Dsonar.host.url=${SONAR_URL} -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_CRED} -Dsonar.password=password"
 }
 
 def call(){
