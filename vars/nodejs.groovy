@@ -10,7 +10,7 @@ def lintchecks() {
 
 def sonarcheck() {
     sh "env"
-    sh "sonar-scanner -X -Dsonar.host.url=${SONAR_URL} -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=83b03e3e897fb76ef13f25c264b75e81ed043ed"
+    sh "sonar-scanner -X -Dsonar.host.url=http://${SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=83b03e3e897fb76ef13f25c264b75e81ed043ed"
     sh "curl https://gitlab.com/thecloudcareers/opensource/-/blob/master/lab-tools/sonar-scanner/quality-gate > quality-gate.sh"
     sh "bash quality-gate.sh ${SONAR_CRED_USR} ${SONAR_CRED_PWD} ${SONAR_URL} ${COMPONENT}"
 } 
@@ -22,9 +22,7 @@ pipeline {
         SONAR_URL = "172.31.89.159"
         SONAR_CRED = credentials('SONAR_CRED')
 } 
-
-        
-        // COMPONENT = "${env.COMPONENT}" // Replace with your component name or pass it externally
+   // COMPONENT = "${env.COMPONENT}" // Replace with your component name or pass it externally
     }
     stages {
         stage('Lint Checks') {
@@ -49,4 +47,4 @@ pipeline {
             }
         }
     }
-  }  
+}  
