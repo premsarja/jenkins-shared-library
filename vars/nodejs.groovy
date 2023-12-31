@@ -8,11 +8,6 @@ def lintchecks() {
     sh "echo Lint checks completed for ${env.COMPONENT}"
 }
 
-def sonarcheck() {
-    sh "env"
-    sh "sonar-scanner -X -Dsonar.host.url=http://${SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
-    sh "bash qualitygate.sh || true"
-}
 
 def call() {
     pipeline {
@@ -32,7 +27,7 @@ def call() {
             stage('Sonar Check') {
                 steps {
                     script {
-                        sonarcheck()
+                        common.sonarcheck()
                     }
                 }
             }
