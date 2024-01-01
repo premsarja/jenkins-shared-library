@@ -38,7 +38,28 @@ pipeline {
                 }
             }
         }
+        stage('parallel'){
+            parallel{
+        stage('unit testing'){
+            steps{
+                sh "echo starting unit testing"
+                sh "echo unit test completed"
+            }
+        }     
+         stage('integration testing'){
+            steps{
+                sh "echo starting unit testing"
+                sh "echo unit test completed"
+            }
+        }      
+          stage('functional testing'){
+            steps{
+                sh "echo starting unit testing"
+                sh "echo unit test completed"
+            }
+        }
 
+    }
         stage('Generating Artifacts') {
             steps {
                 sh "echo 'Generating Artifacts'"
