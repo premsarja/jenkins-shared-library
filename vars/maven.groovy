@@ -23,8 +23,8 @@ pipeline {
             steps {
                 script {
                     def sonarArgs = "-Dsonar.java.binaries=target/"
-                    // You might want to use sonarArgs in the subsequent steps
-                    // For example: sh "mvn sonar:sonar ${sonarArgs}"
+                    // Add commands related to SonarQube using sonarArgs
+                    // Example: sh "mvn sonar:sonar ${sonarArgs}"
                 }
             }
         }
