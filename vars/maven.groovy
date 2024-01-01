@@ -38,8 +38,7 @@ pipeline {
                 }
             }
         }
-     stage('parallel'){
-        steps{
+        stage('parallel'){
         parallel{
         stage('unit testing'){
             steps{
@@ -70,5 +69,4 @@ pipeline {
     }
   }
  }
-}
 }
