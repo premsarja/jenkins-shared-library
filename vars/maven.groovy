@@ -4,6 +4,7 @@ def lintChecks() {
     sh "echo 'Lint checks completed for ${env.COMPONENT}'"
 }
 
+def call(){
 pipeline {
     agent any 
     environment {
@@ -47,7 +48,8 @@ pipeline {
                         sh "echo starting unit testing"
                         sh "echo unit test completed"
                     }
-                }     
+                }
+
                 stage('integration testing') {
                     steps {
                         sh "echo starting integration testing"
@@ -70,4 +72,5 @@ pipeline {
             }
         }
     }
+ }
 }
