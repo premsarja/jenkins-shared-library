@@ -38,8 +38,8 @@ pipeline {
                 }
             }
         }
-        stage('parallel'){
-            parallel{
+     stage('parallel'){
+        parallel{
         stage('unit testing'){
             steps{
                 sh "echo starting unit testing"
