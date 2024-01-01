@@ -14,7 +14,7 @@ pipeline {
         stage('Lint Checks') {
             steps {
                 script {
-                    lintChecks("YourComponentName") // Replace "YourComponentName" with your actual component name
+                    lintChecks() // Replace "YourComponentName" with your actual component name
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage("Sonar Check") {
             steps {
                 script {
-                    def sonarArgs = "-Dsonar.java.binaries=target/"
+                    Args = "-Dsonar.java.binaries=target/"
                     // Add commands related to SonarQube using sonarArgs
                     // Example: sh "mvn sonar:sonar ${sonarArgs}"
                 }
