@@ -11,8 +11,9 @@ pipeline {
         SONAR_URL = "172.31.89.159"
         //SONAR_CRED = credentials('SONAR_CRED')
         // COMPONENT = "YourComponentName" // Define COMPONENT if not already set
+       }
     }
-    stages {
+   stages {
         stage('Lint Checks') {
             steps {
                 script {
@@ -73,5 +74,5 @@ pipeline {
             }
         }
     }
- }
 }
+
