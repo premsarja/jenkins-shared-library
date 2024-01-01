@@ -3,8 +3,8 @@ def lintChecks() {
     sh "mvn checkstyle:check || true"
     sh "echo Lint checks completed for ${env.COMPONENT}"
 }
-def call(){
-pipeline {
+ def call(){
+ pipeline {
     agent any 
     environment {
         SONAR_URL = "172.31.89.159"
