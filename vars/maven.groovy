@@ -9,7 +9,7 @@ pipeline {
     agent any 
     environment {
         SONAR_URL = "172.31.89.159"
-        SONAR_CRED = credentials('SONAR_CRED')
+        //SONAR_CRED = credentials('SONAR_CRED')
     }
     stages {
         stage('Lint Checks') {
@@ -29,11 +29,13 @@ pipeline {
 
         stage("Sonar Check") {
             steps {
-                sh "env"
-                sh "sonar-scanner -Dsonar.host.url=http://${SONAR_URL}:9000/ -Dsonar.java.binaries=target/ -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin  -Dsonar.password=password"
-                sh "bash qualitygate.sh || true"             
+                script{
+                    ARGS="-Dsonar.java.binaries=target/" 
+                    common.lintchecks()
+                }
+        
             }
-          }
         }
     }
-}
+  }
+} 
