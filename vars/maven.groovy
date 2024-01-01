@@ -3,7 +3,7 @@ def lintChecks(component) {
     sh "mvn checkstyle:check || true"
     sh "echo 'Lint checks completed for ${component}'"
 }
-
+def call(){
 pipeline {
     agent any 
     environment {
@@ -31,7 +31,7 @@ pipeline {
         stage("Sonar Check") {
             steps {
                 script {
-                    ARGS = "-Dsonar.java.binaries=target/"
+                    ARGS="-Dsonar.java.binaries=target/"
                     common.sonarcheck()
                     // Add commands related to SonarQube using sonarArgs
                     // Example: sh "mvn sonar:sonar ${sonarArgs}"
@@ -46,4 +46,6 @@ pipeline {
             }
         }
     }
-}
+  }
+}  
+
