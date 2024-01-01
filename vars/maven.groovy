@@ -11,9 +11,8 @@ pipeline {
         SONAR_URL = "172.31.89.159"
         //SONAR_CRED = credentials('SONAR_CRED')
         // COMPONENT = "YourComponentName" // Define COMPONENT if not already set
-       }
     }
-   stages {
+    stages {
         stage('Lint Checks') {
             steps {
                 script {
@@ -35,8 +34,7 @@ pipeline {
             steps {
                 script {
                     env.ARGS = "-Dsonar.java.binaries=target/"
-                    common.sonarcheck
-                    // common.sonarcheck() // This function needs to be defined or referenced properly
+                    // common.sonarcheck()
                     // Add commands related to SonarQube using env.ARGS or any other variable you prefer
                     // Example: sh "mvn sonar:sonar ${env.ARGS}"
                 }
@@ -74,5 +72,6 @@ pipeline {
             }
         }
     }
-}
+  }
 
+}
