@@ -14,13 +14,13 @@ pipeline {
         stage('Lint Checks') {
             steps {
                 script {
-                    lintChecks()
+                    lintChecks("YourComponentName") // Replace "YourComponentName" with your actual component name
                 }
             }
         }
 
-        stage('code compile'){
-            steps{
+        stage('code compile') {
+            steps {
                 sh '''
                 echo generating artifacts for $(COMPONENT)
                 mvn clean compile
