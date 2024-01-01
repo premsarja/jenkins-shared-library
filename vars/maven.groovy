@@ -31,7 +31,8 @@ pipeline {
         stage("Sonar Check") {
             steps {
                 script {
-                    Args = "-Dsonar.java.binaries=target/"
+                    ARGS = "-Dsonar.java.binaries=target/"
+                    common.sonarcheck()
                     // Add commands related to SonarQube using sonarArgs
                     // Example: sh "mvn sonar:sonar ${sonarArgs}"
                 }
