@@ -20,13 +20,6 @@ pipeline {
             }
         }
 
-        stage('Generating Artifacts') {
-            steps {
-                sh "echo Generating Artifacts"
-                sh "mvn clean package"
-            }
-        }
-
         stage("Sonar Check") {
             steps {
                 script{
@@ -36,6 +29,15 @@ pipeline {
         
             }
         }
+
+
+        stage('Generating Artifacts') {
+            steps {
+                sh "echo Generating Artifacts"
+                sh "mvn clean package"
+            }
+        }
+
     }
   }
 } 
