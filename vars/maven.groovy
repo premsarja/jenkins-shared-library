@@ -3,13 +3,14 @@ def lintChecks() {
     sh "mvn checkstyle:check || true"
     sh "echo Lint checks completed for ${env.COMPONENT}"
 }
-
+def call(){
 pipeline {
     agent any 
     environment {
         SONAR_URL = "172.31.89.159"
         //SONAR_CRED = credentials('SONAR_CRED')
         // COMPONENT = "YourComponentName" // Define COMPONENT if not already set
+       }
     }
     stages {
         stage('Lint Checks') {
