@@ -8,7 +8,6 @@ pipeline {
     agent any 
     environment {
         SONAR_URL = "172.31.89.159"
-        ARGS="-Dsonar.java.binaries=target/"
         //SONAR_CRED = credentials('SONAR_CRED')
     }
     stages {
@@ -32,7 +31,7 @@ pipeline {
         stage("Sonar Check") {
             steps {
                 script {
-                    ARGS="-Dsonar.java.binaries=target/"
+                    env.ARGS="-Dsonar.java.binaries=target/"
                     common.sonarcheck()
                     // Add commands related to SonarQube using sonarArgs
                     // Example: sh "mvn sonar:sonar ${sonarArgs}"
