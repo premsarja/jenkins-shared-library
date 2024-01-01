@@ -1,7 +1,7 @@
 def lintChecks() {
-    sh "echo Starting lint checks********** ${env.COMPONENT}"
+    sh "echo Starting lint checks********** ${COMPONENT}"
     sh "mvn checkstyle:check || true"
-    sh "echo Lint checks completed for ${env.COMPONENT}"
+    sh "echo Lint checks completed for ${COMPONENT}"
 }
 
 def call(){
@@ -10,7 +10,7 @@ pipeline {
     environment {
         SONAR_URL = "172.31.89.159"
         //SONAR_CRED = credentials('SONAR_CRED')
-        COMPONENT = "YourComponentName" // Define COMPONENT if not already set
+        // COMPONENT = "YourComponentName" // Define COMPONENT if not already set
     }
     stages {
         stage('Lint Checks') {
@@ -34,6 +34,7 @@ pipeline {
             steps {
                 script {
                     env.ARGS = "-Dsonar.java.binaries=target/"
+                    common.sonarcheck()
                     // common.sonarcheck() // This function needs to be defined or referenced properly
                     // Add commands related to SonarQube using env.ARGS or any other variable you prefer
                     // Example: sh "mvn sonar:sonar ${env.ARGS}"
