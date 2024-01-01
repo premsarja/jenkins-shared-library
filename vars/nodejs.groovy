@@ -1,14 +1,5 @@
 // @Library('roboshop@main') _
 
-def lintchecks() {
-    sh "echo Installing JSLint"
-    sh "npm install jslint"
-    sh "echo Starting lint checks********** ${env.COMPONENT}"
-    sh "node_modules/jslint/bin/jslint.js server.js || true"
-    sh "echo Lint checks completed for ${env.COMPONENT}"
-}
-
-
 def call() {
     pipeline {
         agent any 
@@ -20,7 +11,7 @@ def call() {
             stage('Lint Checks') {
                 steps {
                     script {
-                        lintchecks()
+                        lintcommon.lintchecks()
                     }
                 }
             }
