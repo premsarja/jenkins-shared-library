@@ -8,6 +8,7 @@ pipeline {
     agent any 
     environment {
         SONAR_URL = "172.31.89.159"
+        ARGS="-Dsonar.java.binaries=target/"
         //SONAR_CRED = credentials('SONAR_CRED')
     }
     stages {
