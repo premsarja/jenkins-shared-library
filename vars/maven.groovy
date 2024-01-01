@@ -1,8 +1,10 @@
 def lintChecks() {
-    sh "echo 'Starting lint checks********** \${COMPONENT}'"
+    sh "echo Starting lint checks********** ${COMPONENT}"
     sh "mvn checkstyle:check || true"
-    sh "echo 'Lint checks completed for \${COMPONENT}'"}
+    sh "echo Lint checks completed for ${COMPONENT}"
+}
 
+def call(){
 pipeline {
     agent any 
     environment {
@@ -13,7 +15,9 @@ pipeline {
     stages {
         stage('Lint Checks') {
             steps {
+                script {
                     lintChecks()
+                }
             }
         }
 
@@ -30,7 +34,7 @@ pipeline {
             steps {
                 script {
                     env.ARGS = "-Dsonar.java.binaries=target/"
-                    common.sonarcheck()
+                    common.sonarcheck
                     // common.sonarcheck() // This function needs to be defined or referenced properly
                     // Add commands related to SonarQube using env.ARGS or any other variable you prefer
                     // Example: sh "mvn sonar:sonar ${env.ARGS}"
@@ -69,5 +73,5 @@ pipeline {
             }
         }
     }
+ }
 }
-
