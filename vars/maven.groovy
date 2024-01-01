@@ -14,8 +14,17 @@ pipeline {
         stage('Lint Checks') {
             steps {
                 script {
-                    lintChecks("YourComponentName")
+                    lintChecks()
                 }
+            }
+        }
+
+        stage('code compile'){
+            steps{
+                sh '''
+                echo generating artifacts for $(COMPONENT)
+                mvn clean compile
+                '''
             }
         }
 
