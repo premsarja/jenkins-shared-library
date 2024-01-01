@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-        stage('parallel'){
+        stage('testing'){
         parallel{
         stage('unit testing'){
             steps{
