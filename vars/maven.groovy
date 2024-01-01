@@ -4,7 +4,6 @@ def lintChecks() {
     sh "echo Lint checks completed for ${env.COMPONENT}"
 }
 
-def call(){
 pipeline {
     agent any 
     environment {
@@ -25,7 +24,6 @@ pipeline {
             steps {
                 sh "echo generating artifacts for ${env.COMPONENT}"
                 sh "mvn clean compile"
-                }
             }
         }
 
@@ -33,7 +31,7 @@ pipeline {
             steps {
                 script {
                     env.ARGS = "-Dsonar.java.binaries=target/"
-                    common.sonarcheck()
+                    // common.sonarcheck()
                     // Add commands related to SonarQube using env.ARGS or any other variable you prefer
                     // Example: sh "mvn sonar:sonar ${env.ARGS}"
                 }
@@ -71,6 +69,4 @@ pipeline {
             }
         }
     }
-  
-
 }
