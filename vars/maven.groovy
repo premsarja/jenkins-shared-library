@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     env.ARGS = "-Dsonar.java.binaries=target/"
-                    // common.sonarcheck()
+                    common.sonarcheck()
                     // Add commands related to SonarQube using env.ARGS or any other variable you prefer
                     // Example: sh "mvn sonar:sonar ${env.ARGS}"
                 }
