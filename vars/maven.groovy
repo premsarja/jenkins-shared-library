@@ -25,6 +25,7 @@ pipeline {
             steps {
                 "sh echo generating artifacts for ${env.COMPONENT}"
                  mvn clean compile
+                }
             }
         }
 
