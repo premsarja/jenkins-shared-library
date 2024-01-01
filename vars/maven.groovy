@@ -1,7 +1,7 @@
 def lintChecks() {
-    sh "echo 'Starting lint checks********** ${env.COMPONENT}"
+    sh "echo Starting lint checks********** ${env.COMPONENT}"
     sh "mvn checkstyle:check || true"
-    sh "echo 'Lint checks completed for ${env.COMPONENT}'"
+    sh "echo Lint checks completed for ${env.COMPONENT}"
 }
 
 def call(){
