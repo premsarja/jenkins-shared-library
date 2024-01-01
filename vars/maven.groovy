@@ -1,10 +1,9 @@
-def lintchecks() {
-    sh "echo Starting lint checks********** ${COMPONENT}"
+def lintChecks(component) {
+    sh "echo 'Starting lint checks********** ${component}'"
     sh "mvn checkstyle:check || true"
-    sh "echo Lint checks completed for ${COMPONENT}"
+    sh "echo 'Lint checks completed for ${component}'"
 }
 
-def call(){
 pipeline {
     agent any 
     environment {
@@ -15,29 +14,26 @@ pipeline {
         stage('Lint Checks') {
             steps {
                 script {
-                    lintchecks()
+                    lintChecks("YourComponentName")
                 }
             }
         }
 
         stage("Sonar Check") {
             steps {
-                script{
-                    ARGS="-Dsonar.java.binaries=target/" 
-                    common.lintchecks()
+                script {
+                    def sonarArgs = "-Dsonar.java.binaries=target/"
+                    // You might want to use sonarArgs in the subsequent steps
+                    // For example: sh "mvn sonar:sonar ${sonarArgs}"
                 }
-        
             }
         }
-
 
         stage('Generating Artifacts') {
             steps {
-                sh "echo Generating Artifacts"
+                sh "echo 'Generating Artifacts'"
                 sh "mvn clean package"
             }
         }
-
     }
-  }
-} 
+}
