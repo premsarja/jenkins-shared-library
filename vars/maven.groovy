@@ -3,7 +3,6 @@ def lintChecks() {
     sh "mvn checkstyle:check || true"
     sh "echo Lint checks completed for ${env.COMPONENT}"
 }
-def call(){
     pipeline {
         agent any
         environment {
