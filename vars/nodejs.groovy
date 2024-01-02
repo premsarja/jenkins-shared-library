@@ -23,13 +23,59 @@ def call() {
                     }
                 }
             }
+                        stage('Sonar Checks') {
+                steps {
+                    script {
+                            env.ARGS="-Dsonar.java.binaries=target/"
+                            common.sonarcheck()
+                        }
+                    }
+                }
+            stage('Test Cases') {
+                parallel {
+                    stage('Unit Testing') {
+                        steps {
+                            sh "echo Starting Unit Testing"
+                            sh "echo Unit Testing Completed"
+                        }
+                    }
+                    stage('Integration Testing') {
+                        steps {
+                            sh "echo Starting Integration Testing"
+                            sh "echo Integration Testing Completed"
+                        }
+                    }
+                    stage('Functional Testing') {
+                        steps {
+                            sh "echo Starting Functional Testing"
+                            sh "echo Functional Testing Completed"
+                        }
+                    }
+                }
+
             stage('Generating Artifacts') {
+                when{
+                    expression {env.TAG_NAME != null }
+                }
                 steps {
                     sh "echo Generating Artifacts"
                     sh "npm install"
                     // Add any other necessary commands for generating artifacts
                 }
-            }
-        }
+            stage('uploading  Artifacts') {
+                when{
+                    expression {env.TAG_NAME != null }
+                }
+                steps {
+                    sh "echo uploading Artifacts"
+                }
+
+              }
+            }  
+
+           
+         
+           }
+        } 
     }  
 }
