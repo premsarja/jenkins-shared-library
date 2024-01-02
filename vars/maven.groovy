@@ -7,7 +7,7 @@ def call() {
     pipeline {
         agent any 
         environment {
-            SONAR_URL = "172.31.81.131"
+            SONAR_URL = "172.31.89.159"
             // SONAR_CRED  = credentials('SONAR_CRED')
         }
         stages {
