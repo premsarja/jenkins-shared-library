@@ -22,7 +22,7 @@ def call() {
                         common.sonarcheck()
                     }
                 }
-                                    }
+            }
             stage('Test Cases') {
                 parallel {
                     stage('Unit Testing') {
