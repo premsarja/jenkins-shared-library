@@ -68,6 +68,4 @@ def lintChecks() {
                         }  
             }
         }
-    }
-}   
-   
+    }   
