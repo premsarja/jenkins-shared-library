@@ -52,6 +52,8 @@ def call() {
                 steps {
                     sh "echo Generating Artifacts"
                     sh "npm install"
+                    sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+                    sh "ls -ltr"
                     // Add any other necessary commands for generating artifacts
                 }
             }
