@@ -26,7 +26,7 @@ def call() {
             stage('Test Cases') {
                 parallel {
                     stage('Unit Testing') {
-                      steps {
+                        steps {
                             sh "echo Starting Unit Testing"
                             sh "echo Unit Testing Completed"
                         }
@@ -44,30 +44,25 @@ def call() {
                         }
                     }
                 }
-
+            }
             stage('Generating Artifacts') {
-                when{
-                    expression {env.TAG_NAME != null }
+                when {
+                    expression { env.TAG_NAME != null }
                 }
                 steps {
                     sh "echo Generating Artifacts"
                     sh "npm install"
                     // Add any other necessary commands for generating artifacts
                 }
+            }
             stage('uploading  Artifacts') {
-                when{
-                    expression {env.TAG_NAME != null }
+                when {
+                    expression { env.TAG_NAME != null }
                 }
                 steps {
                     sh "echo uploading Artifacts"
                 }
-
-              }
-            }  
-
-           
-         
-           }
-        } 
-    }  
+            }
+        }
+    }
 }
