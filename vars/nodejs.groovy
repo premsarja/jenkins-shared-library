@@ -22,15 +22,7 @@ def call() {
                         common.sonarcheck()
                     }
                 }
-            }
-                        stage('Sonar Checks') {
-                steps {
-                    script {
-                            env.ARGS="-Dsonar.java.binaries=target/"
-                            common.sonarcheck()
-                        }
-                    }
-                }
+                                    }
             stage('Test Cases') {
                 parallel {
                     stage('Unit Testing') {
