@@ -7,9 +7,9 @@ def lintChecks() {
 def call(){
     pipeline{
         agent any
-        environment(
+        environment{
             SONAR_URL = "172.31.89.159"
-        )
+        }
         
         stages{
             stage('lint checks'){
