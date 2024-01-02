@@ -34,7 +34,7 @@ def call() {
             stage('Test Cases') {
                 parallel {
                     stage('Unit Testing') {
-                        steps {
+                      steps {
                             sh "echo Starting Unit Testing"
                             sh "echo Unit Testing Completed"
                         }
