@@ -47,7 +47,6 @@ def call() {
                     }
                 }
             }
-        stages {
             stage('Check The Release') {
                 when {
                     expression { env.TAG_NAME != null }
@@ -89,5 +88,5 @@ def call() {
                 }
             }
         }
-    }   
+    }
 }
