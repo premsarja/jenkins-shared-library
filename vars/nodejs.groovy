@@ -47,6 +47,7 @@ def call() {
                     }
                 }
             }
+        stages {
             stage('Check The Release') {
                 when {
                     expression { env.TAG_NAME != null }
@@ -60,11 +61,13 @@ def call() {
             }
             stage('Generating Artifacts') {
                 when {
-                    expression { env.TAG_NAME != null }
-                    expression { env.UPLOAD_STATUS == "" }
+                    allOf {
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                    }
                 }
                 steps {
-                    sh "echo Generating Artifiacts...."
+                    sh "echo Generating Artifacts..."
                     sh "npm install"
                     sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
                     sh "ls -ltr"
@@ -72,14 +75,16 @@ def call() {
             }
             stage('Uploading Artifacts') {
                 when {
-                    expression { env.TAG_NAME != null }
-                    expression { env.UPLOAD_STATUS == "" }
+                    allOf {
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                    }
                 }
                 steps {
                     sh '''
-                        echo Uploading ${COMPONENT} artifact to nexus
+                        echo Uploading ${COMPONENT} artifact to Nexus...
                         curl -v -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
-                        echo Uploading ${COMPONENT} artifact to nexus is completed
+                        echo Uploading ${COMPONENT} artifact to Nexus is completed
                     ''' 
                 }
             }
