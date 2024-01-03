@@ -6,7 +6,7 @@ def call() {
         environment {
             SONAR_URL = "172.31.89.159"
             NEXUS_URL = "172.31.60.99"
-            NEXUS_CRED = credentials('NEXUS_CRED')
+            // NEXUS_CRED = credentials('NEXUS_CRED')
             // SONAR_CRED = credentials('SONAR_CRED')
         }    
         stages {
@@ -68,7 +68,7 @@ def call() {
                         echo Uploading ${COMPONENT} artifact to nexus
                         curl -v -u "admin:password" --upload-file "${COMPONENT}-${TAG_NAME}.zip" "http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
                         echo Uploading ${COMPONENT} artifact to nexus is completed
-                       '''
+                    '''
                 }
             }
         }
