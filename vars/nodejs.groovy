@@ -2,8 +2,8 @@ def call() {
     pipeline {
         agent any
         environment {
-            SONAR_URL = "172.31.81.131"
-            NEXUS_URL = "172.31.22.243"
+            SONAR_URL = "172.31.89.159"
+            NEXUS_URL = "172.31.60.99"
             SONAR_CRED  = credentials('SONAR_CRED')
             // NEXUS_CRED  = credentials('NEXUS_CRED')
         }
