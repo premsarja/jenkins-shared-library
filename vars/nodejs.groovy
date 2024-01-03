@@ -53,16 +53,15 @@ def call() {
                 }
                 steps {
                     script {
-                        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
-                        print UPLOAD_STATUS
+                        env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+                        println env.UPLOAD_STATUS
                     }
-                }               
-
+                }
+            }
             stage('Generating Artifacts') {
                 when {
                     expression { env.TAG_NAME != null }
                 }
-                
                 steps {
                     sh "echo Generating Artifacts"
                     sh "npm install"
@@ -81,11 +80,8 @@ def call() {
                         curl -v -u "admin:password" --upload-file "${COMPONENT}-${TAG_NAME}.zip" "http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
                         echo Uploading ${COMPONENT} artifact to nexus is completed
                     '''
-                
                 }
             }
         }
     }
-  } 
 }
-
