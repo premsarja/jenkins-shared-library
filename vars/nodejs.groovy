@@ -1,30 +1,28 @@
-// @Library('roboshop@main') _
-
 def call() {
     pipeline {
-        agent any 
+        agent any
         environment {
-            SONAR_URL = "172.31.89.159"
-            NEXUS_URL = "172.31.60.99"
-            // NEXUS_CRED = credentials('NEXUS_CRED')
-            // SONAR_CRED = credentials('SONAR_CRED')
-        }    
+            SONAR_URL = "172.31.81.131"
+            NEXUS_URL = "172.31.22.243"
+            SONAR_CRED  = credentials('SONAR_CRED')
+            // NEXUS_CRED  = credentials('NEXUS_CRED')
+        }
         stages {
             stage('Lint Checks') {
                 steps {
                     script {
-                        lintcommon.lintchecks()
+                        lintChecks()
                     }
                 }
             }
-            stage('Sonar Check') {
+            stage('Sonar Checks') {
                 steps {
                     script {
-                        env.ARGS="-Dsonar.java.binaries=target/"
-                        common.sonarcheck()
+                            env.ARGS="-Dsonar.sources=."
+                            common.sonarChecks()
+                        }
                     }
                 }
-            }
             stage('Test Cases') {
                 parallel {
                     stage('Unit Testing') {
