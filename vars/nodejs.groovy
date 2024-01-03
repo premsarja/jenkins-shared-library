@@ -54,14 +54,14 @@ def call() {
                 steps {
                     script {
                         echo "TAG_NAME: ${env.TAG_NAME}" // Print TAG_NAME value for debugging
-                        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+                        echo "UPLOAD_STATUS: ${env.UPLOAD_STATUS}"  env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")
                         print UPLOAD_STATUS
                     }
                 }
             }
             stage('Generating Artifacts') {
                 when {
-                        expression { env.TAG_NAME != null }
+                        expression { env.TAG_NAME != 0 }
                         expression { env.UPLOAD_STATUS == "" }
                 }
                 steps {
