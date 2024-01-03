@@ -65,7 +65,7 @@ def call() {
                 }
                 steps {
                     sh "echo uploading Artifacts"
-                    sh curl -v -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip                }
+                    sh curl -v -u "${NEXUS_CRED_USR}${NEXUS_CRED_PSW}" --upload-file ${COMPONENT}-${TAG_NAME}.zip http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip                }
             }
         }
     }
