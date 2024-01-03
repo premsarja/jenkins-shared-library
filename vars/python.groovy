@@ -20,9 +20,12 @@ def call() {
                         SONAR_URL="172.31.89.159"
                         // SONAR_CRED=credentials('SONAR_CRED')
                 }
-                steps{
-                    sh "env"
-                    sh "sonar-scanner -X -Dsonar.host.url=http://${SONAR_URL}:9000/ -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
+            stage('Sonar Check') {
+                steps {
+                    script {
+                        env.ARGS="-Dsonar.java.binaries=target/"
+                        common.sonarcheck()
+                    }
                 }
             }
                 
