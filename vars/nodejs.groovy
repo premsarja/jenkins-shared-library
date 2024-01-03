@@ -54,7 +54,8 @@ def call() {
                 steps {
                     script {
                         echo "TAG_NAME: ${env.TAG_NAME}" // Print TAG_NAME value for debugging
-                        env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true").trim()
+                        def output = sh(script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true", returnStdout: true).trim()
+                        env.UPLOAD_STATUS = output ?: ""
                         echo "UPLOAD_STATUS: ${env.UPLOAD_STATUS}" // Print UPLOAD_STATUS for debugging
                         println env.UPLOAD_STATUS // Print UPLOAD_STATUS content for debugging}
                     }
