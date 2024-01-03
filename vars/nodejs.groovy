@@ -64,7 +64,8 @@ def call() {
                 when {
                         expression { env.TAG_NAME != 0 }
                         expression { env.UPLOAD_STATUS == "" }
-                }
+                    }
+                      
                 steps {
                     sh "echo Generating Artifacts..."
                     sh "npm install"
@@ -78,6 +79,7 @@ def call() {
                         expression { env.UPLOAD_STATUS == "" }
 
                     }
+
                 steps {
                     sh '''
                         echo Uploading ${COMPONENT} artifact to Nexus...
