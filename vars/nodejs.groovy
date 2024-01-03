@@ -20,7 +20,7 @@ def call() {
             stage('Sonar Check') {
                 steps {
                     script {
-                        env.ARGS = "-Dsonar.java.binaries=target/"
+                        env.ARGS="-Dsonar.java.binaries=target/"
                         common.sonarcheck()
                     }
                 }
@@ -60,34 +60,29 @@ def call() {
             }
             stage('Generating Artifacts') {
                 when {
-                    allOf {
-                        expression { env.TAG_NAME != null }
-                        expression { env.UPLOAD_STATUS == "" }
-                    }
+                    expression { env.TAG_NAME != null }
+                    expression { env.UPLOAD_STATUS == "" }
                 }
                 steps {
-                    sh "echo Generating Artifacts"
+                    sh "echo Generating Artifiacts...."
                     sh "npm install"
                     sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
                     sh "ls -ltr"
-                    // Add any other necessary commands for generating artifacts
                 }
             }
-            stage('uploading Artifacts') {
+            stage('Uploading Artifacts') {
                 when {
-                    allOf {
-                        expression { env.TAG_NAME != null }
-                        expression { env.UPLOAD_STATUS == "" }
-                    }
+                    expression { env.TAG_NAME != null }
+                    expression { env.UPLOAD_STATUS == "" }
                 }
                 steps {
                     sh '''
                         echo Uploading ${COMPONENT} artifact to nexus
-                        curl -v -u "admin:password" --upload-file "${COMPONENT}-${TAG_NAME}.zip" "http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
+                        curl -v -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
                         echo Uploading ${COMPONENT} artifact to nexus is completed
-                    '''
+                    ''' 
                 }
             }
         }
-    }
+    }   
 }
