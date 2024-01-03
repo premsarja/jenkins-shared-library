@@ -49,7 +49,7 @@ def call() {
             }
             stage('Check The Release') {
                 when {
-                    expression { env.TAG_NAME != null }
+                    expression {  env.TAG_NAME != null }
                 }
                 steps {
                     script {
@@ -60,11 +60,9 @@ def call() {
             }
             stage('Generating Artifacts') {
                 when {
-                    allOf {
                         expression { env.TAG_NAME != null }
                         expression { env.UPLOAD_STATUS == "" }
                     }
-                }
                 steps {
                     sh "echo Generating Artifacts..."
                     sh "npm install"
@@ -74,11 +72,10 @@ def call() {
             }
             stage('Uploading Artifacts') {
                 when {
-                    allOf {
                         expression { env.TAG_NAME != null }
                         expression { env.UPLOAD_STATUS == "" }
+
                     }
-                }
                 steps {
                     sh '''
                         echo Uploading ${COMPONENT} artifact to Nexus...
