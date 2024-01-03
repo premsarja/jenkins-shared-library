@@ -20,7 +20,7 @@ def call() {
             stage('Sonar Check') {
                 steps {
                     script {
-                        env.ARGS="-Dsonar.java.binaries=target/"
+                        env.ARGS = "-Dsonar.java.binaries=target/"
                         common.sonarcheck()
                     }
                 }
@@ -53,15 +53,17 @@ def call() {
                 }
                 steps {
                     script {
-                        env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")   //SEARCHED IN GOOGLY TO DISPLAY GROVVY COMMNAD IN SHELL OUTPUT
+                        env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
                         print env.UPLOAD_STATUS
                     }
                 }
             }
             stage('Generating Artifacts') {
                 when {
-                    expression { env.TAG_NAME != null }
-                    expression { env.UPLOAD_STATUS == ""}
+                    allOf {
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                    }
                 }
                 steps {
                     sh "echo Generating Artifacts"
@@ -73,8 +75,10 @@ def call() {
             }
             stage('uploading Artifacts') {
                 when {
-                    expression { env.TAG_NAME != null }
-                    expression { env.UPLOAD_STATUS == ""}
+                    allOf {
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                    }
                 }
                 steps {
                     sh '''
