@@ -50,22 +50,20 @@ def call() {
             }
             stage('Check The Release') {
                 when {
-                    expression {  env.TAG_NAME != null }
+                    expression { env.TAG_NAME != null }
                 }
                 steps {
                     script {
-                        echo "TAG_NAME: ${env.TAG_NAME}" // Print TAG_NAME value for debugging
-                        env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")
-                        echo "UPLOAD_STATUS: ${env.UPLOAD_STATUS}" // Print UPLOAD_STATUS for debugging
-                        println env.UPLOAD_STATUS // Print UPLOAD_STATUS content for debugging}
+                        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+                        print UPLOAD_STATUS
                     }
                 }
             }
             stage('Generating Artifacts') {
                 steps {
                     sh "echo Artifact Generation Complete"
+                    }
                 }
             }
         }
     }
-}
