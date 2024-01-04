@@ -73,14 +73,14 @@ def call() {
                     sh "ls -ltr"
                     }
                 }
-            stage('Uploading Artifacts') {
-                when {
-                        expression { env.TAG_NAME != null }
+                 stage('Uploading Artifacts') {
+                     when {
+                         expression { env.TAG_NAME != null }
                         expression { env.UPLOAD_STATUS == "" }
 
                     }
 
-                steps {
+                  steps {
                     sh '''
                         echo Uploading ${COMPONENT} artifact to Nexus...
                         curl -v -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
