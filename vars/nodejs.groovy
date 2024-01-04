@@ -4,6 +4,7 @@ def call() {
     node {
         common.lintChecks()  
         common.sonarcheck()
+        common.testCase()
     }
 }    
 
@@ -45,7 +46,7 @@ def call() {
 //                         common.sonarcheck()
 //                     }
 //                 }
-//             }
+//                }
 //             stage('Test Cases') {
 //                 parallel {
 //                     stage('Unit Testing') {
