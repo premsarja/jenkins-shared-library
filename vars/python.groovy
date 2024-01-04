@@ -4,7 +4,6 @@ def lintchecks() {
     sh " echo linkchecks completed for ${COMPONENT}"
 }
 
-def call() {
     pipeline{
         agent any
         stages{
@@ -66,4 +65,4 @@ def call() {
                 }
             }
         }
-    }
+    
