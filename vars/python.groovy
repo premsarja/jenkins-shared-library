@@ -18,7 +18,7 @@ def call() {
             stage("sonar-checks"){
                 environment{
                         SONAR_URL="172.31.89.159"
-                        NEXUS_URL = "172.31.60.99"   
+                        NEXUS_URL="172.31.60.99"   
                         // SONAR_CRED=credentials('SONAR_CRED')
                     }
                 steps{
