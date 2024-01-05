@@ -51,4 +51,40 @@ def lintChecks() {
          }
         parallel(stages)
     }
-}        
+}
+
+def artifacts() {
+
+    stage('Checking the Artifacts Release') {
+          env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+          print UPLOAD_STATUS
+    }
+
+    if(env.UPLOAD_STATUS == "") {
+        stage('Generating the artifacts') {
+                if(env.APPTYPE == "nodejs") {
+                    sh "echo Generating Artifiacts...."
+                    sh "npm install"
+                    sh "zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+                }
+                else if(env.APPTYPE == "maven") {
+                    sh "echo Generating Artifiacts...."
+                    sh "mvn clean package"
+                    sh "mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar"
+                    sh "zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar"
+                }
+                else if(env.APPTYPE == "python") {
+                    sh "echo Generating Artifiacts...."
+                    sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt"
+                }
+                else {
+                    sh ''' 
+                        echo Generating Artifiact
+                        cd static/
+                        zip -r ../${COMPONENT}-${TAG_NAME}.zip *
+                    '''
+
+                }      
+            }
+        }
+    }                

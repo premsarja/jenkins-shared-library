@@ -13,16 +13,6 @@ def call() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //  declarative pipeline
 
 // def call() {
