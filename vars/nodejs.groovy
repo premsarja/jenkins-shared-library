@@ -8,7 +8,7 @@ def call() {
         env.NEXUS_URL="172.31.60.99"
         common.sonarcheck()
         common.testCase()
-        common.artifacta()
+        common.artifacts()
     }
 }    
 
