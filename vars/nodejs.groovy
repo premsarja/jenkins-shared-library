@@ -6,9 +6,11 @@ def call() {
         env.ARGS="-Dsonar.sources=."
         env.SONAR_URL="172.31.89.159"
         env.NEXUS_URL="172.31.60.99"
+        env.TAG_NAME=${COMPONENT}
         common.sonarcheck()
         common.testCase()
         common.artifacts()
+        
     }
 }    
 
