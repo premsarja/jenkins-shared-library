@@ -91,5 +91,6 @@ def artifacts() {
                     sh "echo Uploading ${COMPONENT} artifact to nexus is completed"
                 }      
             }
-        }
-    }
+    }   }
+ }
+}  
