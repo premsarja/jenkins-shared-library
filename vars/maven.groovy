@@ -104,6 +104,8 @@ def call() {
         // git branch: 'main', url: "https://github.com/premsarja/${COMPONENT}.git"
         common.lintChecks()
         env.ARGS="-Dsonar.java.binaries=target/"
+        env.SONAR_URL="172.31.89.159"
+        env.NEXUS_URL="172.31.60.99"
         common.sonarcheck()
         env.SONAR_URL="172.31.89.159"
         env.NEXUS_URL="172.31.60.99"
