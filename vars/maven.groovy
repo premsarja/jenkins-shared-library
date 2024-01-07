@@ -102,9 +102,9 @@
 def call() {
     node {
         git branch: 'main', url: "https://github.com/premsarja/${COMPONENT}.git"
-        common.lintChecks()
+        common.lintcheck()
         env.ARGS="-Dsonar.java.binaries=target/"
-        common.sonarChecks()
+        common.sonarcheck()
         common.testCases()
         common.artifacts()
     }
