@@ -109,7 +109,7 @@ def call() {
         common.sonarcheck()
         env.SONAR_URL="172.31.89.159"
         env.NEXUS_URL="172.31.60.99"
-        common.testCases()
+        common.testCase()
         common.artifacts()
     }
 }
