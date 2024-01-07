@@ -105,6 +105,8 @@ def call() {
         common.lintChecks()
         env.ARGS="-Dsonar.java.binaries=target/"
         common.sonarcheck()
+        env.SONAR_URL="172.31.89.159"
+        env.NEXUS_URL="172.31.60.99"
         common.testCases()
         common.artifacts()
     }
