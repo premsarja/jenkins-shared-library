@@ -1,6 +1,6 @@
 def call() {
     node {
-        git branch: 'main', url: 'https://github.com/premsarja/${COMPONENT}.git'
+        git branch: 'main', url: 'https://github.com/premsarja/payment.git'
         common.lintChecks()  
         env.ARGS="-Dsonar.sources=."
         env.SONAR_URL="172.31.89.159"
