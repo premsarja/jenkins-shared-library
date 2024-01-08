@@ -6,7 +6,7 @@ def call() {
         env.SONAR_URL="172.31.89.159"
         env.NEXUS_URL="172.31.60.99"
         env.TAG_NAME= ""
-        common.sonarcheck()
+        common.sonarCheck()
         common.testCase()
         common.artifacts()
     }
