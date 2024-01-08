@@ -1,10 +1,13 @@
 def call() {
     node {
-        git branch: 'main', url: "https://github.com/b55-clouddevops/${COMPONENT}.git"
-        common.lintChecks()
+        git branch: 'main', url: 'https://github.com/premsarja/${COMPONENT}.git'
+        common.lintChecks()  
         env.ARGS="-Dsonar.sources=."
-        common.sonarChecks()
-        common.testCases()
+        env.SONAR_URL="172.31.89.159"
+        env.NEXUS_URL="172.31.60.99"
+        env.TAG_NAME= ""
+        common.sonarcheck()
+        common.testCase()
         common.artifacts()
     }
 }
